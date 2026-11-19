@@ -40,7 +40,7 @@ RUN mkdir -p $HOME_DIR/.local/share $HOME_DIR/.cache \
     && echo "ALL ALL=(ALL) NOPASSWD:ALL" > /etc/sudoers.d/container \
     && chmod 440 /etc/sudoers.d/container
 
-RUN dnf install -y git wl-clipboard openssh-clients which && dnf clean all
+RUN dnf install -y git wl-clipboard openssh-clients which stow && dnf clean all
 
 # install pig coding agent and aws cli
 RUN curl -fsSL https://awscli.amazonaws.com/v2/install.sh | bash \
