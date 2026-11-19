@@ -46,7 +46,8 @@ RUN dnf install -y git wl-clipboard openssh-clients which && dnf clean all
 RUN curl -fsSL https://awscli.amazonaws.com/v2/install.sh | bash \
     && PIG_INSTALL_DIR=/home/dev/.local/bin/ curl -fsSL https://pi-in-go.dev/install.sh | sh \
     && /home/dev/.local/bin/pig install npm:pi-web-access@0.31.0 \
-    && /home/dev/.local/bin/pig install npm:pi-ponytail
+    && /home/dev/.local/bin/pig install npm:pi-ponytail \
+    && /home/dev/.local/bin/pig install npm:@herbertgao/pi-impeccable
 
 # any uid must be able to write to the home dir and work dir (podman --user)
 RUN uv venv $VENV_DIR \
