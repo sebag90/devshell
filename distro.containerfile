@@ -12,7 +12,7 @@ RUN --mount=type=tmpfs,dst=/tmp \
 	&& tar -xzf /tmp/JuliaMono.tar.gz -C /usr/share/fonts/JuliaMono/ \
     && fc-cache -fv
 
-RUN dnf install -y lsd fish foot \
+RUN dnf install -y lsd fish foot stow \
 	&& dnf clean all
 
 COPY --from=helix /usr/local/bin/hx /usr/bin/hx
