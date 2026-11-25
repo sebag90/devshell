@@ -33,7 +33,7 @@ ENV PATH=$VENV_DIR/bin:/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew
     UV_PROJECT_ENVIRONMENT=$VENV_DIR \
     SHELL=/home/linuxbrew/.linuxbrew/bin/fish \
     NPM_CONFIG_PREFIX=/usr/local \
-    DEVENV=1
+    PI_CODING_AGENT_DIR=/home/dev/.config/pi/agent
 
 RUN mkdir -p $HOME_DIR/.local/share $HOME_DIR/.cache \
     && ln -s /home/linuxbrew/.linuxbrew/bin/podman /usr/local/bin/docker \
@@ -44,10 +44,10 @@ RUN dnf install -y git wl-clipboard openssh-clients which stow && dnf clean all
 
 # install pig coding agent and aws cli
 RUN curl -fsSL https://awscli.amazonaws.com/v2/install.sh | bash \
-    && PIG_INSTALL_DIR=/home/dev/.local/bin/ curl -fsSL https://pi-in-go.dev/install.sh | sh \
-    && /home/dev/.local/bin/pig install npm:pi-web-access@0.31.0 \
-    && /home/dev/.local/bin/pig install npm:pi-ponytail \
-    && /home/dev/.local/bin/pig install npm:@herbertgao/pi-impeccable
+    && curl -fsSL https://pi.dev/install.sh | sh \
+    && pi install npm:pi-web-access \
+    && pi install npm:pi-ponytail \
+    && pi install npm:@herbertgao/pi-impeccable
 
 # any uid must be able to write to the home dir and work dir (podman --user)
 RUN uv venv $VENV_DIR \
